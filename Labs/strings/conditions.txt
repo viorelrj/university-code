@@ -1,0 +1,19 @@
+Concatenarea a două șiruri de caractere S și Q​
+
+Căutarea primei poziții a primei apariții șirului de caractere Q în șirul de caractere S. Dacă Q nu se regăsește în S, funcția va reurna -1. ​
+
+Lichidarea dintr-un șir a K caractere, începând cu cel din poziția L​
+
+Copierea dintr-un șir a K caractere, începând cu cel din poziția L​
+
+Transformarea unui număr întreg în șir de caractere​
+
+Transformarea unui șir de caractere într-un număr întreg​
+
+Inserarea șirului de caractere S în poziția L a șirului Q​
+
+Transformarea unui număr real în șir de caractere​
+
+Transformarea unui șir de caractere într-un număr real.
+
+
