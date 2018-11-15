@@ -116,17 +116,50 @@ void readLine(char *line, char **words, char *lastLine);
 
 void buildLine(char *builtLine, char **words, char *prev)
 {
-
+	builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
+	int wordIndex = 0;
+	while(wordIndex < countWords(words))
+	{
+		if (builtLine == NULL)
+			builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
+		if (length(builtLine) + length(words[wordIndex]) < LINE_LENGTH)
+		{
+			if (length(builtLine) > 0)
+				concat(builtLine, " ");
+			concat(builtLine, words[wordIndex]);
+			wordIndex++;
+		} else
+		{
+			justify(builtLine);
+			printf("%s\n", builtLine);
+			free(builtLine);
+			builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
+		}
+	}
 }
 
 void readLine(char *builtLine, char **words, char *lastLine)
 {
-	
+
+	if (!feof(fin))
+	{
+		char *line = calloc(1001, sizeof(char));
+		fgets(line, 1001, fin);
+		sanitize(line);
+		listWords(line, &words);
+		free(line);
+		buildLine(builtLine, words, lastLine);
+	}
 }
 
 int main ()
 {
 	fin = fopen("asimov_in.txt", "r");
 	fout = fopen("asimov_out.txt", "w");
-	char *line;
+	
+	char *builtLine;
+	char *lastLine;
+	char **words;
+
+	readLine(builtLine, words, lastLine);
 }
