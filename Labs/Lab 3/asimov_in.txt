@@ -1,1 +1,3 @@
-Samuel Jackson is not as person.He isn't actually. That, actually, is not really the case. Don't even bother about Samuel Jackson, because the main idea is to test the algorithm. Well, he's really nice, you know. In numele tatalui, fiului si lorem ipsumului, compile.
+Samuel               Jackson is not as person.
+ He isn't actually.
+ That, actually, is not really the case. Don't even bother about Samuel Jackson, because the main idea is to test the algorithm. Well, he's really nice, you know. In numele tatalui, fiului si lorem ipsumului, compile.

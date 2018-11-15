@@ -62,49 +62,53 @@ void concat(char *into, char *str)
 
 void insert(char *into, int i, char *str)
 {
-	i--;
-	for(int j = length(into) + length(str); j >= length(str); j--)
-	{
-		into[j] = into[j - length(str)];
-	}
-
-	// printf("%s\n", into);
-
-	for(int j = i -1; j < length(str); j++)
-		into[i + j]= str[j];
+	int delta = length(str);
+	for(int j = length(into); j >= i; j--)
+		into[j + delta] = into[j];
+	
+	for(int j = 0; j < length(str); j++)
+		into[j + i] = str[j];
 }
 
 //This function creates an array of strings containing words from input
 void listWords(char line[], char ***words)
 {
-	// line[length(line) - 1] = '\0';
 	int wordIndex = 0, left = 0, right;
 	char * word;
-	word = calloc(20, sizeof(char));
 	*words = malloc(1);
-
 	while (left < length(line))
 	{
 		left = getFirstLtr(line, left);
 		right = getLastLtr(line, left);
-
 		word = calloc(21, sizeof(int));
 		strcopy(word, line, left, right);
-
 		*words = (char**)realloc(*words, (wordIndex + 1) * 21);
-
-
 		(*words)[wordIndex] = word;
 		left = right + 1;
-
 		wordIndex++;
 	}
-
-	int lastIndex = countWords(*words);
-
-
 	(*words) = (char**)realloc(*words, (wordIndex) * 21);
 	(*words)[wordIndex] = NULL;
+}
+
+void sanitize(char *str)
+{
+	if (str[length(str) - 1] == '\n')
+		str[length(str) - 1] = 'n';
+}
+
+void justify(char *str)
+{
+	int spaceIndex = 0;
+	
+	while(length(str) < LINE_LENGTH)
+	{
+		if(spaceIndex == length(str) - 1)
+			spaceIndex = 0;
+		spaceIndex = getFirstLtr(str, spaceIndex);
+		spaceIndex = getLastLtr(str, spaceIndex);
+		insert(str, spaceIndex, " ");
+	}
 }
 
 void buildLine(char *builtLine, char **words, char *prev);
@@ -112,85 +116,17 @@ void readLine(char *line, char **words, char *lastLine);
 
 void buildLine(char *builtLine, char **words, char *prev)
 {
-	if (length(prev) > 0)
-	{
-		concat(builtLine, prev);
-		prev = calloc(LINE_LENGTH + 1, sizeof(char));
 
-		if (countWords(words) == 0)
-			concat(builtLine, "\n");
-	}
-
-	int i = 0;
-	while (i < countWords(words))
-	{
-		if (length(builtLine) + length(words[i]) < LINE_LENGTH)
-		{
-			if (words[i][length(words[i])-1] == '\n')
-				words[i][length(words[i])-1] = '\0';
-			if (length(builtLine) > 0)
-				concat(builtLine, " ");
-			concat(builtLine, words[i]);
-			i++;
-		}
-		else
-		{
-			printf("%s\n", builtLine);
-			free(builtLine);
-			builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
-		}
-	}
-
-	if (length(builtLine) > 0)
-	{
-		prev = calloc(LINE_LENGTH + 1, sizeof(char));
-		concat(prev, builtLine);
-	}
-	readLine(builtLine, words, prev);
 }
 
 void readLine(char *builtLine, char **words, char *lastLine)
 {
-	char *line;
-
-	if (!feof(fin))
-	{
-		line = calloc(1001, sizeof(char));
-		fgets(line, 1001, fin);
-		
-		listWords(line, &words);
-
-		char * builtLine;
-		builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
-
-		buildLine(builtLine, words, lastLine);
-
-
-		int wordCounter = 0;
-	} else 
-	if (length(lastLine) > 0)
-	{
-		line = calloc(1001, sizeof(char));
-		listWords(" ", &words);
-		char * builtLine;
-		builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
-		buildLine(builtLine, words, lastLine);
-	}
+	
 }
 
 int main ()
 {
 	fin = fopen("asimov_in.txt", "r");
 	fout = fopen("asimov_out.txt", "w");
-	char *line, *clearLine;
-	char **words;
-	char *builtLine;
-
-
-	builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
-	clearLine = calloc(LINE_LENGTH + 1, sizeof(char));
-	words = malloc(0);
-
-
-	readLine(builtLine, words, clearLine);
+	char *line;
 }
