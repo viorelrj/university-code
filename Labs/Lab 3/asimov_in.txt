@@ -1,1 +1,9 @@
 Samuel Jackson is a strange man. Somehow he managed to get into my C program tests! Do you think he is a bad guy? I would rather not call him so, as he helps me a whole lot on writing and testing my code (at least his name helps), so I should be very greatful to him. Samuel, if you are reading this, thanks a lot. Stay cool.
+Samuel Jackson is a strange man. Somehow he managed to get into my C program tests! Do you think he                                                                                         is a bad guy? I would rather not call him so, as he helps me a whole lot on writing and testing my code (at least his name helps), so I should be very greatful to him. Samuel, if you are reading this, thanks a lot. Stay cool.
+
+Samuel Jackson is a strange man. Somehow he managed to get into my C program tests! Do you think he is a bad guy? I would rather not call him so, as he helps me a whole lot on writing and testing my code (at least his name helps), 
+so I should be very greatful 
+to him. Samuel, if you are reading 
+this, 
+thanks a lot. Stay cool.
+Samuel Jackson is a strange man. Somehow he managed to get into my C program tests! Do you think he is a bad guy? I would rather not call him so, as he helps me a whole lot on writing and testing my code (at least his name helps), so I should be very greatful to him. Samuel, if you are reading this, thanks a lot. Stay cool.

@@ -60,6 +60,14 @@ void concat(char *into, char *str)
 		into[firstLength + i] = str[i];
 }
 
+void cut(char *str, int index, int num)
+{
+	for (int i = index; i < length(str) - num; i++)
+	{
+		str[i] = str[i+num];
+	}
+}
+
 void insert(char *into, int i, char *str)
 {
 	int delta = length(str);
@@ -94,7 +102,7 @@ void listWords(char line[], char ***words)
 void sanitize(char *str)
 {
 	if (str[length(str) - 1] == '\n')
-		str[length(str) - 1] = 'n';
+		str[length(str) - 1] = '\0';
 }
 
 void justify(char *str)
@@ -111,12 +119,37 @@ void justify(char *str)
 	}
 }
 
+void unixLine(char *str)
+{
+	int i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\r')
+			cut(str, i, 1);
+		i++;
+	}
+}
+
 void buildLine(char *builtLine, char **words, char *prev);
 void readLine(char *line, char **words, char *lastLine);
 
 void buildLine(char *builtLine, char **words, char *prev)
 {
 	builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
+	if (countWords(words) == 0)
+	{
+		fprintf(fout, "%s\n", prev);
+		free(prev);
+		prev = calloc(LINE_LENGTH + 1, sizeof(char));
+	}
+
+	if(length(prev) > 0)
+	{
+		sanitize(builtLine);
+		sanitize(prev);
+		concat(builtLine, prev);
+		free(prev);
+	}
 	int wordIndex = 0;
 	while(wordIndex < countWords(words))
 	{
@@ -131,35 +164,51 @@ void buildLine(char *builtLine, char **words, char *prev)
 		} else
 		{
 			justify(builtLine);
-			printf("%s\n", builtLine);
+			fprintf(fout, "%s\n", builtLine);
 			free(builtLine);
 			builtLine = calloc(LINE_LENGTH + 1, sizeof(char));
 		}
 	}
+	prev = calloc(LINE_LENGTH + 1, sizeof(char));
+	concat(prev, builtLine);
+	listWords(" ", &words);
+	if (!feof(fin))
+		readLine(builtLine, words, prev);
+	else
+		fprintf(fout, "%s", prev);
 }
 
 void readLine(char *builtLine, char **words, char *lastLine)
 {
-
 	if (!feof(fin))
 	{
 		char *line = calloc(1001, sizeof(char));
 		fgets(line, 1001, fin);
+		unixLine(line);
 		sanitize(line);
 		listWords(line, &words);
 		free(line);
+		buildLine(builtLine, words, lastLine);
+	} 
+	else 
+	{
 		buildLine(builtLine, words, lastLine);
 	}
 }
 
 int main ()
 {
-	fin = fopen("asimov_in.txt", "r");
+	fin = fopen("asimov_03i.txt", "r");
 	fout = fopen("asimov_out.txt", "w");
 	
 	char *builtLine;
 	char *lastLine;
 	char **words;
 
+	lastLine = calloc(LINE_LENGTH + 1, sizeof(char));
+
 	readLine(builtLine, words, lastLine);
+
+	fclose(fin);
+	fclose(fout);
 }
