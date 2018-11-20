@@ -1,0 +1,43 @@
+Your mission, shoud you choose to accept it:
+
+Conversion between numberin systems (common):
+	1. Write a program which will convert a decimal integer to base X(1 < X < 17 )
+	2. Write a program which will convert a base X(1 < X < 17 ) integer to base 10.
+	3. Write a program which will convert a decimal real to base X(1 < X < 17 ) / no more than 7 decimal digits 
+	4. Write a program which will convert a base X(1 < X < 17 ) real number to base 10. / no more than 7 decimal digits
+	5. Write a program which will convert a binary integer to base X(X = 8, 16 )
+	6. Write a program which will convert a binary real to base X(X = 8, 16 )
+	7. Write a program which will convert a base X(X = 8, 16 ) integer to binary
+	8. Write a program which will convert a base X(X = 8, 16 ) real to binary 
+
+
+
+Operations in binary (common):
+	Let we have two long (up to 200 digits) binary numbers. Numbers are given as arrays of char. Write a program which will calculate:
+
+	    1. The sum of 2 binary integers
+	    2. The difference of 2 binary integers
+	    3. The product of a 2 binary integers (up to 200 digits)
+	    4. The division between 2 binary integers
+	    5. The sum of 2 binary real numbers
+	    6. The difference of 2 binary real numbers
+	    7. The product of a 2 binary real numbers (up to 200 digits) 
+	    8. The division between 2 binary real numbers (up to 200 digits) 
+
+	Input – from file. File will contain two lines of chars:  first line – long number, second line – long or regular integer. Decimal point (.) will be used as decimal parts separator.
+
+
+
+Numbers representation in memory:
+	Write functions which will implement the following set of operations:
+
+	    1. Represent on 16 binary positions an unsigned integer
+	    2. Represent on 16 binary positions a  pozitive integer in direct code
+	    3. Represent on 16 binary positions a  negative integer in direct code
+	    4. Represent on 16 binary positions a  negative integer in inverse code
+	    5. Represent on 16 binary positions a  negative integer in complementary code
+	    6. Normalize a real decimal number
+	    7. Normalize a real binary number
+
+	Input – standard input
+	Output – standard output
