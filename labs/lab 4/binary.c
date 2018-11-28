@@ -110,6 +110,27 @@ char * binDif(char * num1, char * num2)
 	return result;
 }
 
+char * binProd(char * num1, char * num2)
+{
+	char * result = calloc(sizeof(char), length(num1) + length(num2));
+	result[0] = '0';
+	result[1] = '0';
+	result[2] = '\0';
+	for(int i = length(num1) - 1; i > 0; i--)
+	{
+		if(num1[i] == '1')
+			result = binSum(result, num2);
+		insert(num2, length(num2), "0");
+		printf("%s\n", result);
+	}
+
+	if (num1[0] == num2[1])
+		result[0] = '0';
+	else result[0] = '1';
+
+	return result;
+}
+
 int main()
 {
 	char * num1 = calloc(sizeof(char), MAX_LENGTH + 1);
@@ -120,7 +141,7 @@ int main()
 
 	num1 = parse(num1);
 	num2 = parse(num2);
-	printf("%s", binSum(num1, num2));
+	printf("%s", binProd(num1, num2));
 
 	return 0;
 }
