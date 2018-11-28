@@ -1,24 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h"
 #include "string.h"
 
 const int MAX_LENGTH = 200;
 
-void stringToStack (char * string, struct stackNode ** stack)
+int charToInt(char digit)
 {
-	int i = 0;
+	return digit - '0';
+}
 
-	while (string[i] != '\0')
-	{
-		*stack = stackPush(*stack, string[i]);
-		i++;
-	}
+char * inToChar(int number)
+{
+	if (number == 1)
+		return "1";
+	if (number == 0)
+		return "0";
 }
 
 char * binSum(char * num1, char * num2)
 {
+	//Make the length equal
+	while (length(num1) != length(num2))
+	{
+		if (length(num1) > length(num2))
+			insert(num2, 0, "0");
 
+		if (length(num2) > length(num1))
+			insert(num2, 0, "0");
+	}
+
+	char * result = calloc(sizeof(char), length(num1) + length(num2) + 1);
+	result[0] = '\0';
+
+	int digit1, digit2, memDigit = 0;
+
+	for(int i = length(num1) - 1; i >= 0; i--)
+	{
+		digit1 = charToInt(num1[i]);
+		digit2 = charToInt(num2[i]);
+
+		insert(result, 0, inToChar((digit1 + digit2 + memDigit) % 2));
+		memDigit = (digit1 + digit2 + memDigit) / 2;
+	}
+	if (memDigit != 0) insert(result, 0, "1");
+	
+	return result;
 }
 
 int main()
@@ -27,19 +53,9 @@ int main()
 	char * num2 = calloc(sizeof(char), MAX_LENGTH + 1);
 
 	gets(num1);
-	// gets(num2);
+	gets(num2);
 
-	struct stackNode * stack;
-	stackInit(stack);
+	binSum(num1, num2);
 
-	// char result = binSum(num1, num2);
-	
-
-
-	stringToStack(num1, &stack);
-	stackDisplay(stack);
-	printf("%d", stackLength(stack));
-
-	// struct node * head = NULL;
-
+	return 0;
 }
