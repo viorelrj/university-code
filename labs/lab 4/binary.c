@@ -48,6 +48,8 @@ char * parse(char * number)
 		number = negatify(number);
 	}
 
+	if(number[length(number) - 1] == '\n')
+		number[length(number) - 1] = '\0';
 	return number;
 }
 
@@ -121,7 +123,6 @@ char * binProd(char * num1, char * num2)
 		if(num1[i] == '1')
 			result = binSum(result, num2);
 		insert(num2, length(num2), "0");
-		printf("%s\n", result);
 	}
 
 	if (num1[0] == num2[1])
@@ -133,14 +134,17 @@ char * binProd(char * num1, char * num2)
 
 int main()
 {
+	FILE * fin;
+	fin = fopen("bin_in.txt", "r");
 	char * num1 = calloc(sizeof(char), MAX_LENGTH + 1);
 	char * num2 = calloc(sizeof(char), MAX_LENGTH + 1);
 
-	gets(num1);
-	gets(num2);
+	fgets(num1, MAX_LENGTH, fin);
+	fgets(num2, MAX_LENGTH, fin);
 
 	num1 = parse(num1);
 	num2 = parse(num2);
+	fclose(fin);
 	printf("%s", binProd(num1, num2));
 
 	return 0;
