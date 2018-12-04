@@ -1,0 +1,10 @@
+User interface
+Tree initialization
+Tree traversals (inorder, preorder, postorder)
+Add a node
+Remove a node
+Search a node in BST
+Levels traversal
+Create your header to manage BST
+Tree will be presented in a “tree form”
+GUI will be considered as reason for a bonus.
