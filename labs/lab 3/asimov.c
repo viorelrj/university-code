@@ -87,6 +87,10 @@ void sanitize(char *str)
 	if (str[length(str) - 1] == '\n')
 		str[length(str) - 1] = '\0';
 
+	for (int i = 0; i < length(str); i++)
+		if (str[i] == '\n' || str[i] == '\r')
+			cut(str, i, 1);
+
 	//Get rid of multiple spaces, if there are any
 	int left = 0;
 	int right = 0;
@@ -105,22 +109,15 @@ void sanitize(char *str)
 	}
 }
 
-//This function sanitizes DOS new line terminations to UNIX
-void unixLine(char *str)
-{
-	int i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\r')
-			cut(str, i, 1);
-		i++;
-	}
-}
 
 //This implements justify functionality by adding spaces
 void justify(char *str)
 {
 	int spaceIndex = 0;
+
+	int i = length(str) - 1;
+	while(str[i] == ' ')
+		cut(str, i--, 1);
 	
 	//As long as the line does not span for the full width possible
 	while(length(str) < LINE_LENGTH)
@@ -153,7 +150,6 @@ void buildLine(char *line, char *prev)
 	}
 
 	//Sanitize the string 
-	unixLine(line);
 	sanitize(line);
 
 	/*
@@ -190,7 +186,7 @@ void buildLine(char *line, char *prev)
 
 		//Copy the segment that fits into a builtLine (the output line)
 		builtLine = calloc(LINE_LENGTH, sizeof(char));
-		strcopy(builtLine, line, 0, wall);
+		strcopy(builtLine, line, 0, wall + 1);
 
 		//If it is not the last line in the block, justify it and display
 		if (length(line) > LINE_LENGTH)
@@ -236,7 +232,7 @@ void readLine(char *line, char *prev)
 
 int main ()
 {
-	fin = fopen("asimov_tests/asimov_02i.txt", "r");
+	fin = fopen("asimov_tests/asimov_05i.txt", "r");
 	fout = fopen("asimov_out.txt", "w");
 
 	char *line, *prev;
