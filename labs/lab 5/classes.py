@@ -7,14 +7,9 @@ class Node:
 		self.parent = None
 
 	#add a node to left branch
-	def add_left(self, data):
-		self.left = Node(data)
-		self.left.parent = self
-
-	#add a node to right branch
-	def add_right(self, data):
-		self.right = Node(data)
-		self.right.parent = self
+	def add(self, data, branch):
+		setattr(self, branch, Node(data))
+		getattr(self, branch).parent = self
 
 	#remove branch, if none of the branch is specified,
 	#remove both
@@ -25,7 +20,7 @@ class Node:
 		else:
 			setattr(self, node, None)
 
-	#traverse the tree in inorder
+	#traverse the tree in inorderNone
 	def inorder(self, result = []):
 		if self.left != None:
 			self.left.inorder(result)
@@ -62,6 +57,14 @@ class Node:
 	#its parents and inversing the array
 	def path(self, data):
 		if (data == self.data):
+			return self
+		if self.left != None:
+			return self.left.path(data)
+		if self.right != None:
+			return self.right.path(data)
+
+	def getNode():
+		if (data == self.data):
 			result = []
 			while (self != None):
 				result.append(self.data)
@@ -72,3 +75,34 @@ class Node:
 			return self.left.path(data)
 		if self.right != None:
 			return self.right.path(data)
+
+#Binary Search Tree class
+class Node_BST(Node):
+
+	#The function to add binary search tree node, according to the rules
+	def add(self, data):
+		if data > self.data:
+			if (self.right == None):
+				self.right = Node_BST(data)
+			else:
+				self.right.add(data)
+		if data < self.data:
+			if (self.left == None):
+				self.left = Node_BST(data)
+			else:
+				self.left.add(data)
+
+	#This function returns the node with given value
+	def search(self, data):
+		if data < self.data:
+			if self.left != None:
+				return self.left.search(data)
+			else:
+				return None
+		elif data > self.data:
+			if self.right != None:
+				return self.right.search(data)
+			else:
+				return None
+		else:
+			return self
