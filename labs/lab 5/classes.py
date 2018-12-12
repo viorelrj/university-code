@@ -1,3 +1,5 @@
+from copy import deepcopy as deepcopy
+
 class Node:
 	#initialization function
 	def __init__(self, data):
@@ -8,25 +10,25 @@ class Node:
 		self.branch = None
 		self.depth = 0
 
-	def __has_left(self):
+	def has_left(self):
 		return self.left != None
 
-	def __has_right(self):
+	def has_right(self):
 		return self.right != None
 
-	def __has_both(self):
-		return self.__has_left() and self.__has_right()
+	def has_both(self):
+		return self.has_left() and self.has_right()
 
-	def __has_no_children(self):
-		return (not self.__has_left()) and (not self.__has_right())
+	def has_no_children(self):
+		return (not self.has_left()) and (not self.has_right())
 
-	def __is_left_child(self):
+	def is_left_child(self):
 		if self.depth > 0 and self.parent.left != None:
 			return self.parent.left.data == self.data
 		else:
 			return None
 
-	def __is_right_child(self):
+	def is_right_child(self):
 		if self.depth > 0 and self.parent.right != None:
 			return self.parent.right.data == self.data
 		else: 
@@ -86,13 +88,19 @@ class Node:
 			del result[:]
 
 		if self.depth < level:
-			if self.__has_left():
+			if self.has_left():
 				self.left.get_level(level, result, False)
-			if self.__has_right():
+			if self.has_right():
 				self.right.get_level(level, result, False)
 		else:
 			result.append(self.data)
 		return result
+
+	def get_length(self):
+		level = 0
+		while (len(self.get_level(level))):
+			level += 1
+		return level
 
 	#this function checks whether a data element
 	#is present in the binary tree
@@ -103,6 +111,9 @@ class Node:
 	#and returns sthe path, by creating the array of
 	#its parents and inversing the array
 	def path(self, data):
+		if self.data == data:
+			result = []
+			result.append(data)
 		if (data == self.data):
 			result = []
 			while (self != None):
@@ -128,6 +139,33 @@ class Node:
 			return self.left.path(data)
 		if self.right != None:
 			return self.right.path(data)
+
+	def print(self):
+		row = []
+
+		# row = []
+		# total_layers = self.get_length()
+		# max_characters = 2 ** (total_layers - 1)
+		# max_spaces = (max_characters - 1) * 3
+		# max_width = max_characters + max_spaces
+		# row.insert(0, object)
+
+
+		# for i in range(total_layers):
+		# 	if total_layers - i > 1:
+		# 		dash_counter = 2**(total_layers - i - 1) - 2
+		# 	chars = []
+		# 	space_before = 2**(total_layers - i) - 2 - dash_counter
+		# 	line = " " * space_before
+		# 	slashes = " " * ( 2**(total_layers - i) - 2 - dash_counter - 1) + "/"
+
+		# 	self.get_level(i, chars, True)
+		# 	for char in chars:
+		# 		line += "_" * dash_counter + str(char) + "_" * dash_counter + " " * (2**(total_layers - i + 1) - 1 - dash_counter * 2)
+		# 		slashes += " " * (dash_counter * 2 + 1) + "/"
+		# 	print(line)
+		# 	print(slashes)
+
 
 #Binary Search Tree class
 class Node_BST(Node):
@@ -183,12 +221,12 @@ class Node_BST(Node):
 		if node == None:
 			return None
 
-		if node.__has_no_children():
+		if node.has_no_children():
 			setattr(node.parent, node.branch, None)
-		elif node.__has_both():
+		elif node.has_both():
 			temp = node.right.find_min()
 			node.data = temp.data
 			node.right.rm_node(temp.data)
 		else:
-			child = node.left if node.__has_left() else node.right
+			child = node.left if node.has_left() else node.right
 			setattr(node.parent, node.branch, child)
