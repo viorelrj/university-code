@@ -232,7 +232,11 @@ void readLine(char *line, char *prev)
 
 int main ()
 {
+<<<<<<< HEAD:labs/lab 3/asimov.c
 	fin = fopen("asimov_tests/asimov_05i.txt", "r");
+=======
+	fin = fopen("asimov_tests/asimov_01i.txt", "r");
+>>>>>>> lab-5-python:course-1/programming/labs/lab 3/asimov.c
 	fout = fopen("asimov_out.txt", "w");
 
 	char *line, *prev;
