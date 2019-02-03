@@ -54,3 +54,5 @@ dkms.conf
 #python
 **/**/__pycache__/
 
+#visual studio code
+**/**/.vscode
