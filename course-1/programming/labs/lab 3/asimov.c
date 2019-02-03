@@ -236,7 +236,7 @@ void readLine(char *line, char *prev)
 
 int main ()
 {
-	fin = fopen("asimov_tests/asimov_02i.txt", "r");
+	fin = fopen("asimov_tests/asimov_01i.txt", "r");
 	fout = fopen("asimov_out.txt", "w");
 
 	char *line, *prev;

@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+peak_1d.py	../peak_1d.py	1;"	kind:file	line:1
+peak_1d	../peak_1d.py	/^def peak_1d(data):$/;"	kind:function	line:4
+f	../peak_1d.py	/^f = open('input1d', 'r')$/;"	kind:variable	line:18
+data	../peak_1d.py	/^data = f.read().split()$/;"	kind:variable	line:21
+data	../peak_1d.py	/^data = list(map(int, data))$/;"	kind:variable	line:22
+start_time	../peak_1d.py	/^start_time = time.time()$/;"	kind:variable	line:24
+peak_2d.py	../peak_2d.py	1;"	kind:file	line:1
+f	../peak_2d.py	/^f = open('input2d', 'r')$/;"	kind:variable	line:4
+data	../peak_2d.py	/^data = f.read().splitlines()$/;"	kind:variable	line:7
+data	../peak_2d.py	/^data = list(map(lambda x: list(map(int, x.split())), data))$/;"	kind:variable	line:8
+peak_1d	../peak_2d.py	/^def peak_1d(data):$/;"	kind:function	line:11
+peak_2d	../peak_2d.py	/^def peak_2d(data):$/;"	kind:function	line:25
