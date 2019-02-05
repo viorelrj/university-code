@@ -1,16 +1,14 @@
-from peak_1d import peak_1d
-
 def peak_2d(data):
   # Split the list in half
   index_y = int(len(data) / 2)
 
   # If there is only one list left, return the max of this list
   if (len(data) == 1):
-    return peak_1d(data.pop())
+    return max(data.pop())
   else:
     # index_max_x is the row index with the max value for the central column
     # of a specific list
-    index_max_x = data[index_y].index(peak_1d(data[index_y]))
+    index_max_x = data[index_y].index(max(data[index_y]))
 
     # If the left or right neighbour of the max row on the central column is
     # bigger than the picked item, analyze that part of the list
