@@ -19,9 +19,5 @@ def radix(data, method='asc'):
 				for number in exponents[exponent][digit]:
 					data.append(number)
 	else:
-		for i in range(exp, -1, -1):
-			for j in range(9, -1, -1):
-				print(i, j)
-				for number in exponents[i][j]:
-					data.append(number)
+		
 	return data
