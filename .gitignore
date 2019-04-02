@@ -56,3 +56,6 @@ dkms.conf
 
 #visual studio code
 **/**/.vscode
+
+#js
+**/**/node_modules/

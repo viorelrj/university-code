@@ -18,6 +18,5 @@ def radix(data, method='asc'):
 			for digit in exponents[exponent]:
 				for number in exponents[exponent][digit]:
 					data.append(number)
-	else:
 		
 	return data

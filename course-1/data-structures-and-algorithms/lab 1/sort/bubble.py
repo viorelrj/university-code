@@ -48,15 +48,3 @@ def two_for_o(data, method='asc'):
 
 	return data
 
-def binary(data, method='asc'):
-	if method == 'asc':
-		def compare(a, b):
-			return a > b
-	else:
-		def compare(a, b):
-			return a < b
-	for k in range(0, len(data)):
-		for i in range(0, len(data) - k - 1):
-			if compare(data[i], data[i + 1]):
-				data[i], data[i+1] = data[i + 1], data[i]
-

@@ -9,7 +9,9 @@ def lomuto(data, method = 'asc', partition='last'):
 		def compare(a, b):
 			return a > b
 
-	def _partition_last(data, lo, hi):
+	def _partition_rand(data, lo, hi):
+		pivot = random.randint(lo, hi)
+		data[pivot], data[hi] = data[hi], data[pivot]
 		pivot = data[hi]
 
 		wall = lo - 1
@@ -19,10 +21,8 @@ def lomuto(data, method = 'asc', partition='last'):
 				data[wall], data[j] = data[j], data[wall]
 		data[wall + 1], data[hi] = data[hi], data[wall + 1]
 		return wall + 1
-	
-	def _partition_rand(data, lo, hi):
-		pivot = random.randint(lo, hi)
-		data[pivot], data[hi] = data[hi], data[pivot]
+
+	def _partition_last(data, lo, hi):
 		pivot = data[hi]
 
 		wall = lo - 1

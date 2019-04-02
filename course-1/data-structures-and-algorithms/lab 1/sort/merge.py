@@ -1,8 +1,8 @@
-def classical(self, data, method = 'asc'):
+def classical(data, method = 'asc'):
 	if len(data) > 1:
 		mid = len(data) // 2
-		left = self.classical(data[0:mid])
-		right = self.classical(data[mid: len(data)])
+		left = classical(data[0:mid])
+		right = classical(data[mid: len(data)])
 		del data[:]
 		while len(left) > 0 or len(right) > 0:
 			if len(left) == 0:
