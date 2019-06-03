@@ -8,6 +8,7 @@
 	<style>
 		body {
 			display: flex;
+			flex-flow: column;
 			align-items: center;
 			justify-content: center;
 			height: 100vh;
@@ -19,7 +20,22 @@
 	</style>
 </head>
 <body>
-	
+	<table>
+		<tr>
+			<td>
+				vertex is <b>blue</b> - is a median <br>
+				vertex ia <b>red</b> - is a center <br>
+				vertex is <b>pink</b> - is both center and median <br>
+			</td>
+			<td>
+				<b>add vertex</b> - left-click on empty space<br>
+				<b>remove vertex</b> - right-click on vertex <br>
+				<b>move vertex</b> - drag and drop one vertex, while holding left click<br>
+				<b>add edge</b> - drag and drop from one vertex to another while holding right click<br>
+				<b>remove edge</b> - right click on edge<br>
+			</td>
+		</tr>
+	</table>
 </body>
 	<script>
 		document.oncontextmenu = function () {
@@ -28,5 +44,6 @@
 	</script>
 	<script src="js/p5/p5.min.js"></script>
 	<script src="js/p5/addons/p5.collide2d.min.js"></script>
+	<script src="js/board.js"></script>
 	<script src="js/main.js"></script>
 </html>
